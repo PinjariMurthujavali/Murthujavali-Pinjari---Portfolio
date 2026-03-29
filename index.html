@@ -7,7 +7,6 @@
 <meta name="description" content="Murthujavali Pinjari – Senior Python Full Stack Developer & Team Lead at Brilliant Technologies. Frappe, ERPNext, Django, WordPress expert.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root {
   --bg: #06070d;
@@ -51,7 +50,6 @@ body {
 @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-40px)} }
 @keyframes drift3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
 
-/* grain */
 body::after {
   content: '';
   position: fixed;
@@ -243,16 +241,6 @@ section { padding: 100px 64px; position: relative; z-index: 2; }
 .photo-corner { position: absolute; width: 28px; height: 28px; border-color: var(--gold); border-style: solid; opacity: .5; }
 .pc-tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
 .pc-br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
-.role-pills { display: flex; flex-direction: column; gap: 8px; position: absolute; top: 16px; right: -16px; }
-.rpill {
-  padding: 5px 12px; border-radius: 4px; font-size: .62rem;
-  font-weight: 600; letter-spacing: .08em; white-space: nowrap;
-  transform: translateX(0); transition: transform .3s;
-}
-.rpill:hover { transform: translateX(-8px); }
-.rp1 { background: rgba(196,164,104,.9); color: #06070d; }
-.rp2 { background: rgba(61,186,140,.85); color: #06070d; }
-.rp3 { background: rgba(42,106,138,.9); color: #e8eaf0; }
 
 /* ── ABOUT ── */
 .about-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -592,13 +580,11 @@ footer {
 }
 .wa-float:hover .wa-tooltip { opacity: 1; }
 
-/* SCROLLBAR */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(196,164,104,.25); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(196,164,104,.5); }
 
-/* RESPONSIVE */
 @media(max-width:1024px) {
   .hero-layout { grid-template-columns: 1fr; }
   .hero-photo-card { max-width: 380px; margin: 0 auto; }
@@ -618,6 +604,47 @@ footer {
   footer { padding: 28px 20px; }
   .hero-metrics { gap: 20px; }
 }
+
+/* ── SUCCESS OVERLAY ── */
+.success-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(6,7,13,.92);
+  backdrop-filter: blur(16px);
+  align-items: center; justify-content: center;
+}
+.success-overlay.show { display: flex; }
+.success-box {
+  background: var(--card);
+  border: 1px solid rgba(61,186,140,.4);
+  border-radius: 20px;
+  padding: 48px 56px;
+  text-align: center;
+  max-width: 440px;
+  animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+.success-icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(61,186,140,.12);
+  border: 2px solid rgba(61,186,140,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: var(--green);
+  margin: 0 auto 24px;
+}
+.success-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--green); margin-bottom: 10px;
+}
+.success-box p { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+.success-close {
+  padding: 12px 32px; border-radius: 8px;
+  background: var(--green); color: #06070d;
+  font-weight: 700; font-size: .82rem;
+  border: none; cursor: pointer; transition: all .2s;
+}
+.success-close:hover { background: #4fd4a6; transform: translateY(-2px); }
 </style>
 </head>
 <body>
@@ -627,6 +654,16 @@ footer {
   <div class="amb-blob ab1"></div>
   <div class="amb-blob ab2"></div>
   <div class="amb-blob ab3"></div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="success-icon"><i class="fas fa-check"></i></div>
+    <h3>Message Sent! ✅</h3>
+    <p>Your message has been delivered to <strong style="color:var(--gold)">luckymurthu@gmail.com</strong>.<br>Murthu will get back to you very soon!</p>
+    <button class="success-close" onclick="document.getElementById('successOverlay').classList.remove('show')">Close</button>
+  </div>
 </div>
 
 <!-- WA FLOAT -->
@@ -653,32 +690,16 @@ footer {
 <!-- ═══════ HERO ═══════ -->
 <section id="home">
   <div class="hero-layout">
-
-    <!-- LEFT -->
     <div>
       <div class="hero-avail r"><span class="avail-dot"></span>Available — Senior Full Stack Developer</div>
-
-      <h1 class="hero-name r">
-        MURTHU<br>
-        <span class="line2">Javali</span>
-      </h1>
-
-      <div class="hero-title-tag r">
-        Senior Developer &nbsp;·&nbsp; Team Lead &nbsp;·&nbsp; Frappe / ERPNext Expert
-      </div>
-
-      <p class="hero-desc r">
-        Building <strong>enterprise-grade web applications</strong> at Brilliant Technologies.
-        Expert in <strong>Python, Django, Frappe Framework, ERPNext</strong> and WordPress —
-        leading teams, architecting scalable solutions, and shipping products that matter.
-      </p>
-
+      <h1 class="hero-name r">MURTHU<br><span class="line2">Javali</span></h1>
+      <div class="hero-title-tag r">Senior Developer &nbsp;·&nbsp; Team Lead &nbsp;·&nbsp; Frappe / ERPNext Expert</div>
+      <p class="hero-desc r">Building <strong>enterprise-grade web applications</strong> at Brilliant Technologies. Expert in <strong>Python, Django, Frappe Framework, ERPNext</strong> and WordPress — leading teams, architecting scalable solutions, and shipping products that matter.</p>
       <div class="hero-actions r">
         <a href="https://wa.me/919100850087?text=Hi%20Murthu!%20I'd%20like%20to%20hire%20you." target="_blank" class="btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp Me</a>
         <a href="#projects" class="btn-ghost"><i class="fas fa-layer-group"></i> View Work</a>
         <a href="#contact" class="btn-outline-w"><i class="fas fa-paper-plane"></i> Contact</a>
       </div>
-
       <div class="hero-metrics r">
         <div class="metric"><div class="metric-num">24+</div><div class="metric-label">Projects Built</div></div>
         <div class="metric"><div class="metric-num">5+</div><div class="metric-label">Roles & Internships</div></div>
@@ -686,8 +707,6 @@ footer {
         <div class="metric"><div class="metric-num">2nd</div><div class="metric-label">SIH 2023 Prize</div></div>
       </div>
     </div>
-
-    <!-- RIGHT — PHOTO -->
     <div class="r">
       <div class="hero-photo-card">
         <div class="hero-photo-placeholder">
@@ -699,7 +718,6 @@ footer {
         <div class="photo-corner pc-br"></div>
       </div>
     </div>
-
   </div>
 </section>
 <div class="divider"></div>
@@ -716,15 +734,7 @@ footer {
           <p class="r">With a B.Tech in Electronics & Communication Engineering, I specialize in <strong>Python, Django, Frappe Framework, ERPNext, and WordPress</strong>. I lead a development team architecting scalable solutions including <strong>Hospital Management Systems</strong> deployed on Frappe Cloud.</p>
           <p class="r">I'm also the creator of <strong>'Syntax Solver'</strong> on YouTube — making coding education accessible to everyone.</p>
           <div class="about-tags r">
-            <span class="atag">⭐ Team Leader</span>
-            <span class="atag">⚙️ Frappe / ERPNext</span>
-            <span class="atag">☁️ Frappe Cloud</span>
-            <span class="atag">🐍 Python Expert</span>
-            <span class="atag">🌐 Full Stack</span>
-            <span class="atag">📦 WordPress</span>
-            <span class="atag">🏥 Hospital ERP</span>
-            <span class="atag">🎬 YouTube Creator</span>
-            <span class="atag">🏆 SIH 2023 Winner</span>
+            <span class="atag">⭐ Team Leader</span><span class="atag">⚙️ Frappe / ERPNext</span><span class="atag">☁️ Frappe Cloud</span><span class="atag">🐍 Python Expert</span><span class="atag">🌐 Full Stack</span><span class="atag">📦 WordPress</span><span class="atag">🏥 Hospital ERP</span><span class="atag">🎬 YouTube Creator</span><span class="atag">🏆 SIH 2023 Winner</span>
           </div>
           <div class="about-socials r" style="margin-top:28px">
             <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" target="_blank" class="soc-btn primary"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -734,30 +744,12 @@ footer {
         </div>
       </div>
       <div class="about-right">
-        <div class="info-block r">
-          <div class="ib-label">Current Role</div>
-          <div class="ib-value">Senior Full Stack Developer & Team Leader<br><span style="color:var(--gold)">Brilliant Technologies, Hyderabad</span></div>
-        </div>
-        <div class="info-block r">
-          <div class="ib-label">Education</div>
-          <div class="ib-value">B.Tech — Electronics & Communication Engineering<br>Santhiram Engineering College · CGPA 8.0</div>
-        </div>
-        <div class="info-block r">
-          <div class="ib-label">Hometown</div>
-          <div class="ib-value">1-82, Edurupadu Village, Nandyal District,<br>Andhra Pradesh, India 🇮🇳</div>
-        </div>
-        <div class="info-block r">
-          <div class="ib-label">Contact</div>
-          <div class="ib-value"><a href="https://wa.me/919100850087">+91 9100850087 (WhatsApp)</a></div>
-        </div>
-        <div class="info-block r">
-          <div class="ib-label">Open To</div>
-          <div class="ib-value">On-site · Remote · Hybrid<br>India & International Roles</div>
-        </div>
-        <div class="info-block r">
-          <div class="ib-label">Achievement</div>
-          <div class="ib-value" style="color:var(--gold)">🥈 Smart India Hackathon 2023 — 2nd Prize (National Level)</div>
-        </div>
+        <div class="info-block r"><div class="ib-label">Current Role</div><div class="ib-value">Senior Full Stack Developer & Team Leader<br><span style="color:var(--gold)">Brilliant Technologies, Hyderabad</span></div></div>
+        <div class="info-block r"><div class="ib-label">Education</div><div class="ib-value">B.Tech — Electronics & Communication Engineering<br>Santhiram Engineering College · CGPA 8.0</div></div>
+        <div class="info-block r"><div class="ib-label">Hometown</div><div class="ib-value">1-82, Edurupadu Village, Nandyal District,<br>Andhra Pradesh, India 🇮🇳</div></div>
+        <div class="info-block r"><div class="ib-label">Contact</div><div class="ib-value"><a href="https://wa.me/919100850087">+91 9100850087 (WhatsApp)</a></div></div>
+        <div class="info-block r"><div class="ib-label">Open To</div><div class="ib-value">On-site · Remote · Hybrid<br>India & International Roles</div></div>
+        <div class="info-block r"><div class="ib-label">Achievement</div><div class="ib-value" style="color:var(--gold)">🥈 Smart India Hackathon 2023 — 2nd Prize (National Level)</div></div>
       </div>
     </div>
   </div>
@@ -770,7 +762,6 @@ footer {
     <p class="sec-eyebrow r">Technical Expertise</p>
     <h2 class="sec-title r">My <em>Skills</em></h2>
     <div class="skills-layout">
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">⚙️</span> Frappe & ERPNext</div>
         <div class="sk-list">
@@ -782,7 +773,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fas fa-hospital"></i>Hospital Mgmt ERP</div><span class="sk-pct">80%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".80"></div></div></div>
         </div>
       </div>
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">🐍</span> Python & Backend</div>
         <div class="sk-list">
@@ -794,7 +784,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fab fa-docker"></i>Docker</div><span class="sk-pct">65%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".65"></div></div></div>
         </div>
       </div>
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">🌐</span> Frontend</div>
         <div class="sk-list">
@@ -806,7 +795,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fab fa-node-js"></i>Node.js</div><span class="sk-pct">68%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".68"></div></div></div>
         </div>
       </div>
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">📦</span> WordPress & CMS</div>
         <div class="sk-list">
@@ -818,7 +806,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fas fa-paint-brush"></i>Theme Customization</div><span class="sk-pct">85%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".85"></div></div></div>
         </div>
       </div>
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">🛠️</span> DevOps & Tools</div>
         <div class="sk-list">
@@ -830,7 +817,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fas fa-project-diagram"></i>Agile / Scrum</div><span class="sk-pct">78%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".78"></div></div></div>
         </div>
       </div>
-
       <div class="skill-panel r">
         <div class="sp-head"><span class="sp-icon">🧠</span> Core CS</div>
         <div class="sk-list">
@@ -842,7 +828,6 @@ footer {
           <div class="sk"><div class="sk-row"><div class="sk-name"><i class="fas fa-lock"></i>API Security</div><span class="sk-pct">72%</span></div><div class="sk-bar"><div class="sk-fill" data-w=".72"></div></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -854,7 +839,6 @@ footer {
     <p class="sec-eyebrow r">Work History</p>
     <h2 class="sec-title r">Experience <em>&amp; Achievements</em></h2>
     <div class="tl-wrap">
-
       <div class="tl-item r">
         <div class="tl-dot curr"></div>
         <div class="tl-meta"><span class="tl-date">2025 — Present</span><span class="curr-pill">● CURRENT</span></div>
@@ -862,12 +846,9 @@ footer {
           <div class="tl-role curr-role">Senior Python Full Stack Developer & Team Leader</div>
           <div class="tl-org">Brilliant Technologies, Hyderabad</div>
           <div class="tl-desc">Leading a development team building enterprise-grade web applications using Python, Django, Frappe Framework and ERPNext. Architecting scalable solutions, conducting code reviews, managing project delivery, and mentoring junior developers. Successfully deployed Hospital Management System on Frappe Cloud.</div>
-          <div class="tl-tags">
-            <span class="tl-tag g">Team Leader</span><span class="tl-tag g">Python</span><span class="tl-tag g">Frappe</span><span class="tl-tag g">ERPNext</span><span class="tl-tag g">Django</span><span class="tl-tag g">Frappe Cloud</span><span class="tl-tag g">Hospital ERP</span>
-          </div>
+          <div class="tl-tags"><span class="tl-tag g">Team Leader</span><span class="tl-tag g">Python</span><span class="tl-tag g">Frappe</span><span class="tl-tag g">ERPNext</span><span class="tl-tag g">Django</span><span class="tl-tag g">Frappe Cloud</span><span class="tl-tag g">Hospital ERP</span></div>
         </div>
       </div>
-
       <div class="tl-item r">
         <div class="tl-dot"></div>
         <div class="tl-meta"><span class="tl-date">Feb 2025 — May 2025</span></div>
@@ -878,7 +859,6 @@ footer {
           <div class="tl-tags"><span class="tl-tag">WordPress</span><span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">JavaScript</span><span class="tl-tag">SEO</span><span class="tl-tag">WooCommerce</span></div>
         </div>
       </div>
-
       <div class="tl-item r">
         <div class="tl-dot"></div>
         <div class="tl-meta"><span class="tl-date">2024</span></div>
@@ -889,7 +869,6 @@ footer {
           <div class="tl-tags"><span class="tl-tag">Python</span><span class="tl-tag">Django</span><span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">SQL</span></div>
         </div>
       </div>
-
       <div class="tl-item r">
         <div class="tl-dot"></div>
         <div class="tl-meta"><span class="tl-date">2024</span></div>
@@ -900,7 +879,6 @@ footer {
           <div class="tl-tags"><span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">JavaScript</span><span class="tl-tag">Django</span></div>
         </div>
       </div>
-
       <div class="tl-item r">
         <div class="tl-dot" style="border-color:var(--gold);box-shadow:0 0 10px rgba(196,164,104,.5)"></div>
         <div class="tl-meta"><span class="tl-date">2023</span><span class="award-pill">🏆 AWARD</span></div>
@@ -911,7 +889,6 @@ footer {
           <div class="tl-tags"><span class="tl-tag a">Python</span><span class="tl-tag a">JavaScript</span><span class="tl-tag a">SQL</span><span class="tl-tag a">Team Collaboration</span></div>
         </div>
       </div>
-
       <div class="tl-item r">
         <div class="tl-dot"></div>
         <div class="tl-meta"><span class="tl-date">2022 — 2024</span></div>
@@ -922,7 +899,6 @@ footer {
           <div class="tl-tags"><span class="tl-tag">Leadership</span><span class="tl-tag">Mentoring</span><span class="tl-tag">Communication</span></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -934,24 +910,9 @@ footer {
     <p class="sec-eyebrow r">Academics</p>
     <h2 class="sec-title r">My <em>Education</em></h2>
     <div class="edu-grid">
-      <div class="edu-card r">
-        <div class="edu-year">2024</div>
-        <div class="edu-degree">B.Tech — Electronics & Communication Engineering</div>
-        <div class="edu-inst">Santhiram Engineering College, Andhra Pradesh</div>
-        <div class="edu-grade">✦ CGPA: 8.0 / 10</div>
-      </div>
-      <div class="edu-card r">
-        <div class="edu-year">2020</div>
-        <div class="edu-degree">Intermediate (MPC)</div>
-        <div class="edu-inst">KNR Memorial Junior College</div>
-        <div class="edu-grade">✦ Percentage: 74%</div>
-      </div>
-      <div class="edu-card r">
-        <div class="edu-year">2018</div>
-        <div class="edu-degree">SSC (10th Grade)</div>
-        <div class="edu-inst">Sri Raja Rajeswari High School</div>
-        <div class="edu-grade">✦ Percentage: 85%</div>
-      </div>
+      <div class="edu-card r"><div class="edu-year">2024</div><div class="edu-degree">B.Tech — Electronics & Communication Engineering</div><div class="edu-inst">Santhiram Engineering College, Andhra Pradesh</div><div class="edu-grade">✦ CGPA: 8.0 / 10</div></div>
+      <div class="edu-card r"><div class="edu-year">2020</div><div class="edu-degree">Intermediate (MPC)</div><div class="edu-inst">KNR Memorial Junior College</div><div class="edu-grade">✦ Percentage: 74%</div></div>
+      <div class="edu-card r"><div class="edu-year">2018</div><div class="edu-degree">SSC (10th Grade)</div><div class="edu-inst">Sri Raja Rajeswari High School</div><div class="edu-grade">✦ Percentage: 85%</div></div>
     </div>
   </div>
 </section>
@@ -969,13 +930,8 @@ footer {
       <button class="pf-btn" onclick="filterProj('web',this)">Web Apps</button>
     </div>
     <div class="proj-grid" id="proj-grid">
-
       <div class="proj-card feat r" data-cat="erp">
-        <div class="proj-visual" style="height:220px">
-          <div class="proj-visual-inner" style="height:220px"><i class="fas fa-hospital-alt"></i></div>
-          <span class="pbadge pb-erp">🏥 ERPNext</span>
-          <span class="pbadge pb-feat">⭐ Featured</span>
-        </div>
+        <div class="proj-visual" style="height:220px"><div class="proj-visual-inner" style="height:220px"><i class="fas fa-hospital-alt"></i></div><span class="pbadge pb-erp">🏥 ERPNext</span><span class="pbadge pb-feat">⭐ Featured</span></div>
         <div class="proj-body">
           <div class="proj-title">Hospital Management System — ERPNext & Frappe</div>
           <div class="proj-desc">Enterprise-grade Hospital Management System built on ERPNext using Frappe Framework. Features patient registration, appointment scheduling, billing, pharmacy management, lab reports, doctor schedules, inventory & real-time dashboards — deployed on Frappe Cloud for high availability.</div>
@@ -983,7 +939,6 @@ footer {
           <div class="proj-links"><a href="#" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live Demo</a><a href="#" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="erp">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-cogs"></i></div><span class="pbadge pb-frappe">⚙️ Frappe</span></div>
         <div class="proj-body">
@@ -993,7 +948,6 @@ footer {
           <div class="proj-links"><a href="#" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Demo</a><a href="#" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="erp">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-chart-line"></i></div><span class="pbadge pb-erp">ERPNext</span></div>
         <div class="proj-body">
@@ -1003,7 +957,6 @@ footer {
           <div class="proj-links"><a href="#" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Demo</a><a href="#" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-user-circle"></i></div><span class="pbadge pb-web">Web</span></div>
         <div class="proj-body">
@@ -1013,7 +966,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Portfolio_website/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Portfolio_website" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-female"></i></div><span class="pbadge pb-web">Web</span></div>
         <div class="proj-body">
@@ -1023,7 +975,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Tech-For-Girl---Empower-Learn/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Tech-For-Girl---Empower-Learn" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-cloud-sun"></i></div><span class="pbadge pb-web">Web</span></div>
         <div class="proj-body">
@@ -1033,7 +984,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Project-23---Weather-Dashboard/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Project-23---Weather-Dashboard/" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-question-circle"></i></div><span class="pbadge pb-web">Game</span></div>
         <div class="proj-body">
@@ -1043,7 +993,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Project-1---Quiz-Game/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Project-1---Quiz-Game" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-microphone-alt"></i></div><span class="pbadge pb-ai">AI Web</span></div>
         <div class="proj-body">
@@ -1053,7 +1002,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Project-24-Speech-text-reader/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Project-24-Speech-text-reader" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-qrcode"></i></div><span class="pbadge pb-web">Tool</span></div>
         <div class="proj-body">
@@ -1063,7 +1011,6 @@ footer {
           <div class="proj-links"><a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR/deployments" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
       <div class="proj-card r" data-cat="web">
         <div class="proj-visual" style="height:150px"><div class="proj-visual-inner" style="height:150px"><i class="fas fa-sticky-note"></i></div><span class="pbadge pb-web">App</span></div>
         <div class="proj-body">
@@ -1073,7 +1020,6 @@ footer {
           <div class="proj-links"><a href="https://pinjarimurthujavali.github.io/Project-3-Notes-Application/" target="_blank" class="pl pl-demo"><i class="fas fa-external-link-alt"></i> Live</a><a href="https://github.com/PinjariMurthujavali/Project-3-Notes-Application" target="_blank" class="pl pl-gh"><i class="fab fa-github"></i> GitHub</a></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -1153,6 +1099,13 @@ footer {
         </div>
       </div>
       <div class="r">
+        <!-- ═══ CONTACT FORM — uses Web3Forms (free, no backend needed) ═══
+             SETUP (one-time, 2 minutes):
+             1. Go to https://web3forms.com
+             2. Enter your email: luckymurthu@gmail.com → Click "Create Access Key"
+             3. Copy the Access Key you receive
+             4. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with that key
+             That's it! Emails will go directly to luckymurthu@gmail.com ✅ -->
         <div class="form-wrap">
           <div class="form-row">
             <input type="text" id="f-name" class="f-input" placeholder="Your Name *">
@@ -1161,11 +1114,17 @@ footer {
           <input type="text" id="f-company" class="f-input" placeholder="Company / Organization (optional)">
           <textarea id="f-msg" class="f-textarea" placeholder="Your Message... *"></textarea>
           <div style="display:flex;gap:12px">
-            <button id="send-btn" onclick="sendMsg()" class="btn-gold" style="border:none;flex:1;justify-content:center;cursor:none"><i class="fas fa-paper-plane"></i> Send Message</button>
-            <button onclick="sendWhatsApp()" class="btn-ghost" style="border:none;flex:1;justify-content:center;cursor:none;background:transparent"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button id="send-btn" onclick="sendMsg()" class="btn-gold" style="border:none;flex:1;justify-content:center;cursor:none">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <button onclick="sendWhatsApp()" class="btn-ghost" style="border:none;flex:1;justify-content:center;cursor:none;background:transparent">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
           </div>
           <p id="form-status" style="font-size:.78rem;margin-top:10px;line-height:1.5"></p>
-          <p style="font-size:.69rem;color:var(--text-muted);margin-top:6px;opacity:.6">📧 Email sends to <span style="color:var(--gold)">luckymurthu@gmail.com</span> &nbsp;·&nbsp; 💬 WhatsApp auto-fills your details</p>
+          <p style="font-size:.69rem;color:var(--text-muted);margin-top:6px;opacity:.6">
+            📧 Email delivers to <span style="color:var(--gold)">luckymurthu@gmail.com</span> &nbsp;·&nbsp; 💬 WhatsApp auto-fills your details
+          </p>
         </div>
       </div>
     </div>
@@ -1184,18 +1143,16 @@ footer {
 </footer>
 
 <script>
-// ── EMAILJS INIT ──
-// SETUP STEPS (one time):
-// 1. Go to https://www.emailjs.com → Sign up free
-// 2. Add Gmail service → Connect luckymurthu@gmail.com
-// 3. Create email template (use variable names below)
-// 4. Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID below
-emailjs.init("YOUR_PUBLIC_KEY"); // ← Replace with your EmailJS Public Key
-
-const EMAILJS_SERVICE  = "YOUR_SERVICE_ID";   // ← e.g. "service_abc123"
-const EMAILJS_TEMPLATE = "YOUR_TEMPLATE_ID";  // ← e.g. "template_xyz456"
-// EmailJS Template variables to use in your template:
-// {{from_name}}, {{from_email}}, {{company}}, {{message}}, {{reply_to}}
+// ══════════════════════════════════════════════════════════════
+//  WEB3FORMS SETUP — Free email service, no backend needed
+//  HOW TO ACTIVATE (takes 2 minutes):
+//  1. Open https://web3forms.com in browser
+//  2. Type luckymurthu@gmail.com → Click "Create Access Key"
+//  3. Copy the key from the page
+//  4. Paste it below replacing YOUR_WEB3FORMS_ACCESS_KEY
+// ══════════════════════════════════════════════════════════════
+const WEB3FORMS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+// ══════════════════════════════════════════════════════════════
 
 // ── CURSOR ──
 const cur = document.getElementById('cur'), ring = document.getElementById('cring');
@@ -1242,22 +1199,21 @@ function filterProj(cat, btn) {
 
 // ── NAV ACTIVE ──
 const secs = document.querySelectorAll('section[id]');
-const nls = document.querySelectorAll('.nav-links a');
+const nls  = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let curr = '';
   secs.forEach(s => { if (window.scrollY >= s.offsetTop - 130) curr = s.id; });
   nls.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + curr));
 }, { passive: true });
 
-// ── FORM STATUS HELPER ──
+// ── STATUS HELPER ──
 function setStatus(msg, color) {
   const s = document.getElementById('form-status');
   s.style.color = color;
   s.innerHTML = msg;
-  if (color === 'var(--green)') setTimeout(() => s.textContent = '', 5000);
 }
 
-// ── SEND EMAIL via EmailJS ──
+// ── SEND EMAIL via Web3Forms ──
 async function sendMsg() {
   const name    = document.getElementById('f-name').value.trim();
   const email   = document.getElementById('f-email').value.trim();
@@ -1265,13 +1221,19 @@ async function sendMsg() {
   const message = document.getElementById('f-msg').value.trim();
   const btn     = document.getElementById('send-btn');
 
+  // Validation
   if (!name || !email || !message) {
     setStatus('⚠️ Please fill Name, Email and Message.', '#f87171');
     return;
   }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     setStatus('⚠️ Please enter a valid email address.', '#f87171');
+    return;
+  }
+
+  // Check key is configured
+  if (WEB3FORMS_KEY === "438c0f65-2c35-47a5-af69-c82f483de4f2") {
+    setStatus('⚙️ Email not configured yet. Please use WhatsApp for now!', '#f87171');
     return;
   }
 
@@ -1279,29 +1241,42 @@ async function sendMsg() {
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
   setStatus('', '');
 
-  const templateParams = {
-    from_name:  name,
-    from_email: email,
-    reply_to:   email,
-    company:    company || 'Not mentioned',
-    message:    message,
-    to_email:   'luckymurthu@gmail.com'
-  };
-
   try {
-    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams);
-    setStatus('✅ Message sent to luckymurthu@gmail.com! Murthu will reply soon.', 'var(--green)');
-    ['f-name','f-email','f-company','f-msg'].forEach(id => document.getElementById(id).value = '');
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        name:    name,
+        email:   email,
+        subject: `Portfolio Contact from ${name}${company ? ' — ' + company : ''}`,
+        message: `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'Not mentioned'}\n\nMessage:\n${message}`,
+        from_name: name,
+        replyto:   email
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      // Show success overlay
+      document.getElementById('successOverlay').classList.add('show');
+      // Clear form
+      ['f-name','f-email','f-company','f-msg'].forEach(id => document.getElementById(id).value = '');
+      setStatus('', '');
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
   } catch (err) {
-    console.error('EmailJS error:', err);
-    setStatus('❌ Send failed. Try WhatsApp instead!', '#f87171');
+    console.error('Send error:', err);
+    setStatus('❌ Failed to send. Please use WhatsApp instead!', '#f87171');
   } finally {
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
   }
 }
 
-// ── WHATSAPP SEND with form autofill ──
+// ── WHATSAPP with form autofill ──
 function sendWhatsApp() {
   const name    = document.getElementById('f-name').value.trim();
   const email   = document.getElementById('f-email').value.trim();
@@ -1313,12 +1288,9 @@ function sendWhatsApp() {
   if (email)   text += `*Email:* ${email}\n`;
   if (company) text += `*Company:* ${company}\n`;
   if (message) text += `\n*Message:*\n${message}`;
-  if (!name && !message) {
-    text = `👋 Hi Murthu! I saw your portfolio and want to connect.`;
-  }
+  if (!name && !message) text = `👋 Hi Murthu! I saw your portfolio and want to connect.`;
 
-  const encoded = encodeURIComponent(text);
-  window.open(`https://wa.me/919100850087?text=${encoded}`, '_blank');
+  window.open(`https://wa.me/919100850087?text=${encodeURIComponent(text)}`, '_blank');
 }
 </script>
 </body>
