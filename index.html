@@ -7,6 +7,7 @@
 <meta name="description" content="Murthujavali Pinjari – Senior Python Full Stack Developer & Team Lead at Brilliant Technologies. Frappe, ERPNext, Django, WordPress expert.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 :root {
   --bg: #06070d;
@@ -207,23 +208,25 @@ section { padding: 100px 64px; position: relative; z-index: 2; }
 /* HERO PHOTO CARD */
 .hero-photo-card {
   position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  background: radial-gradient(ellipse 90% 70% at 50% 25%, #fffae0 0%, #fff7cc 18%, #fef3aa 35%, #e8d87a 55%, #1a1830 100%);
+  border: 1px solid rgba(196,164,104,.35);
+  border-radius: 20px;
   overflow: hidden;
   aspect-ratio: 3/4;
+  box-shadow: 0 0 80px rgba(255,245,180,.08), inset 0 0 40px rgba(255,248,200,.06);
 }
 .hero-photo-card img {
-  width: 100%; height: 100%; object-fit: cover;
-  display: block;
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  display: block; position: relative; z-index: 1;
 }
 .hero-photo-placeholder {
   width: 100%; height: 100%;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 16px;
-  background: linear-gradient(160deg, #0e1020, #1a1d35);
+  background: radial-gradient(ellipse 85% 65% at 50% 28%, #fffbe8 0%, #fff5cc 20%, #fdeea0 40%, #d4b84a 60%, #1a1830 100%);
+  position: relative; z-index: 1;
 }
-.hero-photo-placeholder i { font-size: 6rem; color: var(--gold); opacity: .18; }
+.hero-photo-placeholder i { font-size: 6rem; color: #a07820; opacity: .35; }
 .photo-overlay-grad {
   position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
   background: linear-gradient(to top, rgba(6,7,13,.95), transparent);
@@ -741,7 +744,7 @@ footer {
         </div>
         <div class="info-block r">
           <div class="ib-label">Hometown</div>
-          <div class="ib-value">Nandyal, Andhra Pradesh, India 🇮🇳</div>
+          <div class="ib-value">1-82, Edurupadu Village, Nandyal District,<br>Andhra Pradesh, India 🇮🇳</div>
         </div>
         <div class="info-block r">
           <div class="ib-label">Contact</div>
@@ -1105,14 +1108,14 @@ footer {
     <h2 class="sec-title r">My <em>Location</em></h2>
     <div class="loc-grid">
       <div class="map-frame r">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3832.18!2d78.47587!3d15.92535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb59900661d1331%3A0x2e3101ac7ef4a12e!2sVenkatesh%20RMP%20clinic!5e0!3m2!1sen!2sin!4v1711700000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Murthu's Location"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15325.47!2d78.4833!3d15.4833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb5dae0c6b3c6c3%3A0xb4e25f4e5c2e1234!2sEdurupadu%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1711700000001!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Edurupadu Village, Nandyal District, Andhra Pradesh"></iframe>
       </div>
       <div class="loc-cards r">
-        <div class="loc-c"><div class="loc-ic"><i class="fas fa-home"></i></div><div class="loc-text"><h4>Hometown</h4><p>Nandyal, Andhra Pradesh, India 🇮🇳</p></div></div>
+        <div class="loc-c"><div class="loc-ic"><i class="fas fa-home"></i></div><div class="loc-text"><h4>Hometown Address</h4><p>1-82, Edurupadu Village,<br>Nandyal District, Andhra Pradesh, India 🇮🇳</p></div></div>
         <div class="loc-c"><div class="loc-ic"><i class="fas fa-building"></i></div><div class="loc-text"><h4>Currently Working At</h4><p>Brilliant Technologies, Hyderabad, Telangana</p></div></div>
         <div class="loc-c"><div class="loc-ic"><i class="fas fa-map-marker-alt"></i></div><div class="loc-text"><h4>Open To Work</h4><p>On-site · Remote · Hybrid<br>India & International Roles</p></div></div>
         <div class="loc-c"><div class="loc-ic"><i class="fas fa-phone-alt"></i></div><div class="loc-text"><h4>Direct Contact</h4><a href="https://wa.me/919100850087" target="_blank">+91 9100850087 (WhatsApp)</a></div></div>
-        <a href="https://www.google.com/maps/place/Nandyal" target="_blank" class="btn-ghost" style="justify-content:center;margin-top:4px"><i class="fas fa-directions"></i> Get Directions</a>
+        <a href="https://www.google.com/maps/search/Edurupadu+Village+Nandyal+District+Andhra+Pradesh" target="_blank" class="btn-ghost" style="justify-content:center;margin-top:4px"><i class="fas fa-directions"></i> Get Directions</a>
       </div>
     </div>
   </div>
@@ -1152,16 +1155,17 @@ footer {
       <div class="r">
         <div class="form-wrap">
           <div class="form-row">
-            <input type="text" id="f-name" class="f-input" placeholder="Your Name">
-            <input type="email" id="f-email" class="f-input" placeholder="Your Email">
+            <input type="text" id="f-name" class="f-input" placeholder="Your Name *">
+            <input type="email" id="f-email" class="f-input" placeholder="Your Email *">
           </div>
           <input type="text" id="f-company" class="f-input" placeholder="Company / Organization (optional)">
-          <textarea id="f-msg" class="f-textarea" placeholder="Your Message..."></textarea>
+          <textarea id="f-msg" class="f-textarea" placeholder="Your Message... *"></textarea>
           <div style="display:flex;gap:12px">
-            <button onclick="sendMsg()" class="btn-gold" style="border:none;flex:1;justify-content:center;cursor:none"><i class="fas fa-paper-plane"></i> Send Message</button>
-            <a href="https://wa.me/919100850087" target="_blank" class="btn-ghost" style="flex:1;justify-content:center"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <button id="send-btn" onclick="sendMsg()" class="btn-gold" style="border:none;flex:1;justify-content:center;cursor:none"><i class="fas fa-paper-plane"></i> Send Message</button>
+            <button onclick="sendWhatsApp()" class="btn-ghost" style="border:none;flex:1;justify-content:center;cursor:none;background:transparent"><i class="fab fa-whatsapp"></i> WhatsApp</button>
           </div>
-          <p id="form-status" style="font-size:.78rem;margin-top:8px"></p>
+          <p id="form-status" style="font-size:.78rem;margin-top:10px;line-height:1.5"></p>
+          <p style="font-size:.69rem;color:var(--text-muted);margin-top:6px;opacity:.6">📧 Email sends to <span style="color:var(--gold)">luckymurthu@gmail.com</span> &nbsp;·&nbsp; 💬 WhatsApp auto-fills your details</p>
         </div>
       </div>
     </div>
@@ -1180,6 +1184,19 @@ footer {
 </footer>
 
 <script>
+// ── EMAILJS INIT ──
+// SETUP STEPS (one time):
+// 1. Go to https://www.emailjs.com → Sign up free
+// 2. Add Gmail service → Connect luckymurthu@gmail.com
+// 3. Create email template (use variable names below)
+// 4. Replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID below
+emailjs.init("YOUR_PUBLIC_KEY"); // ← Replace with your EmailJS Public Key
+
+const EMAILJS_SERVICE  = "YOUR_SERVICE_ID";   // ← e.g. "service_abc123"
+const EMAILJS_TEMPLATE = "YOUR_TEMPLATE_ID";  // ← e.g. "template_xyz456"
+// EmailJS Template variables to use in your template:
+// {{from_name}}, {{from_email}}, {{company}}, {{message}}, {{reply_to}}
+
 // ── CURSOR ──
 const cur = document.getElementById('cur'), ring = document.getElementById('cring');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1232,16 +1249,76 @@ window.addEventListener('scroll', () => {
   nls.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + curr));
 }, { passive: true });
 
-// ── FORM ──
-function sendMsg() {
-  const n = document.getElementById('f-name').value.trim();
-  const e = document.getElementById('f-email').value.trim();
-  const m = document.getElementById('f-msg').value.trim();
+// ── FORM STATUS HELPER ──
+function setStatus(msg, color) {
   const s = document.getElementById('form-status');
-  if (!n || !e || !m) { s.style.color = '#f87171'; s.textContent = '⚠️ Please fill all required fields.'; return; }
-  s.style.color = 'var(--green)'; s.textContent = '✅ Message sent! I\'ll get back to you soon.';
-  ['f-name', 'f-email', 'f-company', 'f-msg'].forEach(id => document.getElementById(id).value = '');
-  setTimeout(() => s.textContent = '', 4500);
+  s.style.color = color;
+  s.innerHTML = msg;
+  if (color === 'var(--green)') setTimeout(() => s.textContent = '', 5000);
+}
+
+// ── SEND EMAIL via EmailJS ──
+async function sendMsg() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const message = document.getElementById('f-msg').value.trim();
+  const btn     = document.getElementById('send-btn');
+
+  if (!name || !email || !message) {
+    setStatus('⚠️ Please fill Name, Email and Message.', '#f87171');
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    setStatus('⚠️ Please enter a valid email address.', '#f87171');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  setStatus('', '');
+
+  const templateParams = {
+    from_name:  name,
+    from_email: email,
+    reply_to:   email,
+    company:    company || 'Not mentioned',
+    message:    message,
+    to_email:   'luckymurthu@gmail.com'
+  };
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams);
+    setStatus('✅ Message sent to luckymurthu@gmail.com! Murthu will reply soon.', 'var(--green)');
+    ['f-name','f-email','f-company','f-msg'].forEach(id => document.getElementById(id).value = '');
+  } catch (err) {
+    console.error('EmailJS error:', err);
+    setStatus('❌ Send failed. Try WhatsApp instead!', '#f87171');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  }
+}
+
+// ── WHATSAPP SEND with form autofill ──
+function sendWhatsApp() {
+  const name    = document.getElementById('f-name').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const message = document.getElementById('f-msg').value.trim();
+
+  let text = `👋 Hi Murthu! I saw your portfolio and want to connect.\n\n`;
+  if (name)    text += `*Name:* ${name}\n`;
+  if (email)   text += `*Email:* ${email}\n`;
+  if (company) text += `*Company:* ${company}\n`;
+  if (message) text += `\n*Message:*\n${message}`;
+  if (!name && !message) {
+    text = `👋 Hi Murthu! I saw your portfolio and want to connect.`;
+  }
+
+  const encoded = encodeURIComponent(text);
+  window.open(`https://wa.me/919100850087?text=${encoded}`, '_blank');
 }
 </script>
 </body>
