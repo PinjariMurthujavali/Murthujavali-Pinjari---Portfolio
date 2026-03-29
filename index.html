@@ -1,1096 +1,1288 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Murthujavali Pinjari | Full Stack Developer Portfolio</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murthujavali Pinjari | Full Stack Developer</title>
+<meta name="description" content="Murthujavali Pinjari – Full Stack Developer specializing in Python, Django, WordPress & AI solutions.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #050508;
+    --surface: #0d0d14;
+    --card: #111120;
+    --border: rgba(99,102,241,0.18);
+    --accent: #6366f1;
+    --accent2: #a78bfa;
+    --gold: #f59e0b;
+    --text: #e8e8f0;
+    --muted: #7878a0;
+    --green: #10b981;
+  }
 
-<meta name="description" content="Murthujavali Pinjari is a Full Stack Software Developer specializing in .NET, AI, and Web Development. View projects, portfolio, and contact details.">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<meta name="keywords" content="Murthujavali Pinjari, Full Stack Developer, Software Developer Portfolio, .NET Developer, Web Developer India">
+  html { scroll-behavior: smooth; }
 
-<meta name="author" content="Murthujavali Pinjari">
-<meta name="google-site-verification" content="AfAK3y3zXazuNcfP__qm8SesCT9amHMKV1pj7jLkKxU" />
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-<meta name="robots" content="index, follow">  <meta name="description" content="Murthu's portfolio showcasing skills in web development, Python, Java, WordPress, and projects."> <!--  Important for SEO -->  
-   
-    <!-- Favicon (optional) -->  
-  <link rel="icon" type="image/png" href="assets/img/favicon1.png"> 
-  
-    <!-- Stylesheets -->  
-    <link rel="stylesheet" href="assets/css/styles.css">  
-    <link rel="icon" type="assets/img/profile.png" href="favicon.png">
-    <!-- Boxicons (Icons) -->  
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  
-  
-    <!-- Open Graph / SEO Tags -->  
-    <meta property="og:title" content="Murthu's Portfolio">  
-    <meta property="og:description" content="Showcasing skills in web development, Python, Java, and WordPress.">  
-    <meta property="og:image" content="assets/img/favicon.png">  <!-- Use a representative image -->  
-    <meta property="og:url" content="https://pinjarimurthujavali.github.io/Portfolio_website/">  <!-- Replace with your actual URL -->  
-    <meta property="og:type" content="website">  
-</head>  
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: exclusion;
+  }
+  .cursor-ring {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--accent2);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+    mix-blend-mode: exclusion;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1; opacity: 0.6;
+  }
+
+  /* ANIMATED BG ORBS */
+  .orbs {
+    position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
+  }
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25;
+    animation: float 12s ease-in-out infinite;
+  }
+  .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, #6366f1, transparent); top: -100px; left: -100px; animation-delay: 0s; }
+  .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, #a78bfa, transparent); bottom: -80px; right: -80px; animation-delay: -4s; }
+  .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, #f59e0b, transparent); top: 40%; left: 60%; animation-delay: -8s; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(5,5,8,0.7);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative; z-index: 2;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 100px;
+    padding: 6px 18px; margin-bottom: 32px;
+    font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2);
+    background: rgba(99,102,241,0.06);
+    animation: fadeUp 0.8s ease both;
+  }
+  .badge-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.5)} }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title .line-accent { color: var(--accent2); }
+  .hero-title .line-outline {
+    -webkit-text-stroke: 2px var(--accent);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; border: none; cursor: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(99,102,241,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(99,102,241,0.55); }
+
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border-radius: 8px;
+    background: #25d366; color: #fff; font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; cursor: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(37,211,102,0.3);
+  }
+  .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(37,211,102,0.5); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border-radius: 8px;
+    border: 1px solid var(--border); color: var(--text); font-weight: 500; font-size: 0.9rem;
+    text-decoration: none; cursor: none;
+    background: rgba(255,255,255,0.03);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(99,102,241,0.06); }
+
+  /* HERO STATS */
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* SECTION */
+  section { padding: 100px 60px; position: relative; z-index: 2; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent2);
+    margin-bottom: 12px; font-family: 'Space Mono', monospace;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 2px; line-height: 1;
+    margin-bottom: 60px;
+  }
+  .section-title span { color: var(--accent2); }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  /* DIVIDER LINE */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 60px; width: calc(100% - 120px);
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  .about-photo-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(167,139,250,0.1));
+  }
+  .about-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+    color: var(--muted);
+  }
+  .about-photo-placeholder i { font-size: 5rem; color: var(--accent); opacity: 0.4; }
+  .about-photo-placeholder span { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+  .about-corner {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-color: var(--accent2); border-style: solid;
+  }
+  .about-corner.tl { top: -10px; left: -10px; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+  .about-corner.br { bottom: -10px; right: -10px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
+
+  .about-tag {
+    position: absolute; bottom: 24px; left: -24px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 20px;
+    display: flex; align-items: center; gap: 12px;
+    backdrop-filter: blur(10px);
+  }
+  .about-tag-icon { font-size: 1.5rem; }
+  .about-tag-text { font-size: 0.75rem; line-height: 1.4; }
+  .about-tag-text strong { display: block; color: var(--accent2); font-size: 1rem; }
+
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
+  .about-text p strong { color: var(--accent2); }
+
+  .about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .chip {
+    padding: 6px 16px; border-radius: 100px;
+    border: 1px solid var(--border); font-size: 0.78rem; color: var(--muted);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.2s;
+  }
+  .chip:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    transition: all 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(99,102,241,0.5); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .skill-name { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 0.9rem; }
+  .skill-name i { color: var(--accent2); font-size: 1.1rem; }
+  .skill-pct { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); }
+  .skill-bar { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+  .skill-fill.animate { transform: scaleX(1); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .timeline-item { position: relative; margin-bottom: 48px; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -38px; top: 8px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent2); border: 2px solid var(--bg);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .tl-date {
+    font-family: 'Space Mono', monospace; font-size: 0.72rem;
+    color: var(--accent2); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .tl-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    transition: all 0.3s;
+  }
+  .tl-card:hover { border-color: rgba(99,102,241,0.4); transform: translateX(8px); }
+  .tl-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+  .tl-org { font-size: 0.82rem; color: var(--accent2); margin-bottom: 12px; }
+  .tl-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tl-tag {
+    padding: 3px 12px; border-radius: 100px;
+    background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+    font-size: 0.72rem; color: var(--accent2);
+  }
+  .tl-prize { color: var(--gold); font-weight: 600; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+  .proj-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: all 0.35s; cursor: none;
+  }
+  .proj-card:hover { border-color: rgba(99,102,241,0.5); transform: translateY(-8px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+  .proj-img-area {
+    height: 180px; background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(167,139,250,0.08));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; color: var(--accent); position: relative; overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .proj-img-area::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(99,102,241,0.1), transparent 70%);
+  }
+  .proj-body { padding: 24px; }
+  .proj-title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .proj-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+  .proj-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .proj-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 16px; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .proj-link.demo { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25); color: var(--accent2); }
+  .proj-link.demo:hover { background: rgba(99,102,241,0.22); }
+  .proj-link.gh { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--muted); }
+  .proj-link.gh:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+  /* CERTIFICATIONS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: rgba(245,158,11,0.4); transform: translateY(-4px); }
+  .cert-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: var(--gold); font-size: 1.2rem;
+  }
+  .cert-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+  .cert-info p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .cert-info span { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-info h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 16px; }
+  .contact-info p { color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+
+  .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+  .contact-method {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--card);
+    text-decoration: none; color: var(--text);
+    transition: all 0.3s;
+  }
+  .contact-method:hover { border-color: rgba(99,102,241,0.5); transform: translateX(6px); }
+  .contact-method.whatsapp { border-color: rgba(37,211,102,0.3); background: rgba(37,211,102,0.04); }
+  .contact-method.whatsapp:hover { border-color: #25d366; box-shadow: 0 0 30px rgba(37,211,102,0.15); }
+  .cm-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .cm-icon.purple { background: rgba(99,102,241,0.12); color: var(--accent2); }
+  .cm-icon.green { background: rgba(37,211,102,0.12); color: #25d366; }
+  .cm-icon.blue { background: rgba(59,130,246,0.12); color: #60a5fa; }
+  .cm-icon.red { background: rgba(239,68,68,0.12); color: #f87171; }
+  .cm-text strong { display: block; font-size: 0.82rem; margin-bottom: 2px; }
+  .cm-text span { font-size: 0.78rem; color: var(--muted); }
+
+  .contact-form-area { }
+  .form-group { margin-bottom: 16px; }
+  .form-input, .form-textarea {
+    width: 100%; padding: 14px 18px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text); font-family: inherit; font-size: 0.88rem;
+    transition: all 0.3s; outline: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--muted); }
+  .footer-social { display: flex; gap: 16px; }
+  .social-btn {
+    width: 40px; height: 40px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--card);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-btn:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-3px); }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed; bottom: 32px; right: 32px; z-index: 1000;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25d366;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; color: #fff; text-decoration: none;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+    animation: wa-pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes wa-pulse {
+    0%,100% { box-shadow: 0 8px 30px rgba(37,211,102,0.5); transform: scale(1); }
+    50% { box-shadow: 0 8px 50px rgba(37,211,102,0.8); transform: scale(1.08); }
+  }
+  .whatsapp-float .wa-tooltip {
+    position: absolute; right: 70px; white-space: nowrap;
+    background: var(--card); border: 1px solid rgba(37,211,102,0.3);
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 0.78rem; color: #25d366; font-family: 'DM Sans', sans-serif;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .whatsapp-float:hover .wa-tooltip { opacity: 1; }
+
+  /* EDUCATION (inside timeline) */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .edu-card:hover { transform: translateY(-6px); border-color: rgba(99,102,241,0.35); }
+  .edu-year { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent2); letter-spacing: 2px; }
+  .edu-degree { font-size: 0.98rem; font-weight: 600; margin: 8px 0 4px; }
+  .edu-inst { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
+  .edu-grade { font-family: 'Space Mono', monospace; font-size: 0.78rem; color: var(--green); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #home { padding: 100px 24px 60px; }
+    section { padding: 60px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
+    .about-tag { display: none; }
+  }
+</style>
+</head>
 <body>
-    <div class="bg-3d" aria-hidden="true"></div>
-    <div class="cloak" aria-hidden="true"></div>
-  
-    <!-- ================== HEADER ================== -->                     
-    <header class="l-header">  
-        <nav class="nav bd-grid">  
 
-            <div class="nav__menu" id="nav-menu">  
-                          <div>  
-                <a href="#" class="nav__logo">Murthu-Folio</a>  <!-- Use nav__logo class -->  
-            </div>  
-  
-                <ul class="nav__list">  
-                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>  
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>  
-                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>  
-                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a> <!-- Added Experience to Nav -->  
-                    <li class="nav__item"><a href="#education" class="nav__link">Education</a> <!-- Added Education to Nav -->
-                    <li class="nav__item"><a href="#projects" class="nav__link">Projects</a> <!-- Added Projects to Nav -->  
-                    <li class="nav__item"><a href="#certifications" class="nav__link">Certifications</a> <!-- Added Certifications to Nav -->  
-                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>  
-                </ul>  
-            </div>  
-  
-            <div class="nav__toggle" id="nav-toggle">  
-                <i class='bx bx-menu'></i>  
-            </div>  
-        </nav>  
-    </header>  
-  
-    <main class="l-main">  
-  
-        <!-- ================== HOME ================== -->  
-        <section class="home bd-grid" id="home">  
-            <div class="home__data">  
-                <h1 class="home__title">Hi,<br>I'm <span class="home__title-color">Murthu</span><br> Software Developer</h1>  
-                <p class="home__description">Passionate Software Developer specializing in Full-Stack Web Development, AI, and WordPress.</p><br> <!-- Added a brief description -->  
-                <a href="#contact" class="button">Contact Me</a>  <!-- More friendly button text -->  &nbsp;&nbsp;
-                <a href="Murthujavali_Pinjari_Resume_2024.pdf" class="button" download>Download CV </a>
-            
-            </div>  
-  
-            <div class="home__social">  
-                <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" class="home__social-icon" aria-label="LinkedIn Profile"><i class='bx bxl-linkedin'></i></a>  
-                <a href="https://github.com/PinjariMurthujavali" class="home__social-icon" aria-label="GitHub Profile"><i class='bx bxl-github' ></i></a>   
-                <a href="https://www.youtube.com/@Syntaxsolver-u5m" class="home__social-icon" aria-label="Youtube Profile"><i class='bx bxl-youtube' ></i></a>  
-                <!-- Add other social links here (e.g., Twitter, YouTube) -->  
-            </div>  
-  
-            <div class="home__img">  
-                <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
-                    <mask id="mask0" mask-type="alpha">  
-                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>  
-                    </mask>  
-                    <g mask="url(#mask0)">  
-                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>  
-                        <image class="home__blob-img" x="50" y="60" href="assets/img/profile.png" alt="Murthu's Profile Picture"/>  <!-- Added alt text -->  
-                    </g>  
-                </svg>  
-            </div>  
-        </section>  
-  
-        <!-- ================== ABOUT ================== -->  
-        <section class="about section" id="about">  
-            <h2 class="section-title">About Me</h2> <!-- More accessible heading -->  
-  
-            <div class="about__container bd-grid">  
-                <div class="about__img">  
-                    <img src="assets/img/about.jpg" alt="Murthu - Software Developer">  <!-- Added alt text -->  
-                </div>  
-  
-                <div class="about__card">
-                    <h2 class="about__subtitle">I'm Murthu</h2>
-                    <p class="about__text">I'm an enthusiastic software developer with a strong passion for web development, AI, WordPress, and innovative tech solutions. Holding a degree in Electronics and Communication Engineering, I specialize in Python, Java, WordPress, and modern web technologies. I thrive on solving real-world problems through code and am committed to contributing to impactful projects that make a difference.</p>
-                    <p class="about__text">I'm also the creator of <strong>'Syntax Solver'</strong> on YouTube, where I share tutorials on coding, DSA, and project development. I aim to make learning tech more accessible and fun for everyone.</p>
-                    <div class="about__cta">
-                        <a href="#projects" class="button">View Projects</a><br><br>                        <a href="#contact" class="button" style="margin-left:12px;">Hire Me</a>
-                    </div>
-                </div>
-            </div>  
-        </section>  
-  <br>
-        <main>
-    <!-- Experience Timeline -->
-            <section class="experience section" id="experience">  
-            <h2 class="section-title" id="experience">Experience</h2>  
-      <div class="timeline">
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <span class="timeline-date highlight">Feb 2025 - May 2025</span>
-            <i class="fa-solid fa-code icon"></i>
-            <h3>WordPress Integrator</h3>
-            <h4>Vsplash Techlabs Private Limited</h4>
-            <p>Worked on WordPress-based website integration and customization. Implemented responsive designs, integrated plugins, and optimized website performance for SEO and speed.</p>
-            <div class="tech-stack">WordPress, HTML, CSS, JavaScript</div>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- BACKGROUND ORBS -->
+<div class="orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- WHATSAPP FLOAT BUTTON -->
+<a href="https://wa.me/919100850087?text=Hi%20Murthu!%20I%20saw%20your%20portfolio%20and%20I'd%20like%20to%20connect%20with%20you."
+   class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-tooltip">💬 Message Murthu on WhatsApp</span>
+</a>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">MURTHU</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Currently @ Brilliant Technologies · Python Full Stack Developer
+    </div>
+    <h1 class="hero-title">
+      MURTHU<br>
+      <span class="line-accent">JAVALI</span><br>
+      <span class="line-outline">PINJARI</span>
+    </h1>
+    <p class="hero-sub">
+      Full Stack Software Developer specializing in Python, Django, WordPress & AI-driven web solutions. Building digital experiences that make an impact.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/919100850087?text=Hi%20Murthu!%20I%20saw%20your%20portfolio%20and%20I'd%20like%20to%20hire%20you." 
+         class="btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp Me
+      </a>
+      <a href="#projects" class="btn-primary">
+        <i class="fas fa-layer-group"></i> View Projects
+      </a>
+      <a href="#contact" class="btn-outline">
+        <i class="fas fa-paper-plane"></i> Contact
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">24+</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2nd</div>
+        <div class="stat-label">SIH 2023 Prize</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">// about me</p>
+    <h2 class="section-title reveal">WHO IS <span>MURTHU?</span></h2>
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo-frame">
+          <div class="about-photo-placeholder">
+            <i class="fas fa-user-circle"></i>
+            <span>Add your photo here</span>
           </div>
         </div>
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <span class="timeline-date highlight">2024</span>
-            <i class="fa-solid fa-network-wired icon"></i>
-            <h3>Python Full Stack Intern</h3>
-            <h4>Durga Software Solutions</h4>
-            <p>Completed intensive training and internship on Python Full Stack development. Gained hands-on experience in backend and frontend development.</p>
-            <div class="tech-stack">Python, Django, HTML, CSS, JavaScript, SQL</div>
-          </div>
-        </div>
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <span class="timeline-date">2024</span>
-            <i class="fa-solid fa-laptop-code icon"></i>
-            <h3>Web Full Stack Intern</h3>
-            <h4>Eduskills Academy</h4>
-            <p>Completed a virtual internship on Full Stack Web Development. Worked on real-world web development projects using modern technologies and frameworks.</p>
-            <div class="tech-stack">HTML, CSS, JavaScript, SQL, Django</div>
-          </div>
-        </div>
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <span class="timeline-date">2022</span>
-            <i class="fa-solid fa-people-group icon"></i>
-            <h3>Intern Student Coordinator</h3>
-            <h4>Eduskills Academy</h4>
-            <p>Served as a coordinator for 3 years, helping students with technical guidance and internship onboarding.</p>
-            <div class="tech-stack">Team Coordination, Technical Support, Communication</div>
-          </div>
-        </div>
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <span class="timeline-date">2023</span>
-            <i class="fa-solid fa-trophy icon"></i>
-            <h3>SMART INDIA HACKATHON 2023</h3>
-            <h4>Government of India Initiative</h4>
-            <p>Secured 2nd prize in the national-level hackathon for an innovative software solution.</p>
-            <div class="tech-stack">Python, JavaScript, SQL, Team Collaboration Tools</div>
+        <div class="about-corner tl"></div>
+        <div class="about-corner br"></div>
+        <div class="about-tag">
+          <span class="about-tag-icon">🏆</span>
+          <div class="about-tag-text">
+            <strong>2nd Prize</strong>
+            Smart India Hackathon 2023
           </div>
         </div>
       </div>
-    </section>
-    <!-- Education Timeline -->
-    <section class="timeline-section" id="education">
-      <h2 class="section-title">Education</h2>
-      <div class="timeline">
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <span class="timeline-date highlight">2024</span>
-            <i class="fa-solid fa-graduation-cap icon"></i>
-            <h3>B.Tech in Electronics and Communication Engineering</h3>
-            <h4>Santhiram Engineering College, Andhra Pradesh</h4>
-            <p>CGPA: 8.0 / 10</p>
-          </div>
+      <div class="about-text reveal">
+        <p>I'm an <strong>enthusiastic software developer</strong> with a strong passion for web development, AI, WordPress, and innovative tech solutions. Holding a B.Tech in <strong>Electronics & Communication Engineering</strong>, I specialize in Python, Java, WordPress, and modern web technologies.</p>
+        <p>I thrive on solving real-world problems through code and am committed to contributing to impactful projects. I'm also the creator of <strong>'Syntax Solver'</strong> on YouTube — making learning tech more accessible and fun for everyone.</p>
+        <p>Currently open to <strong>full-time roles, freelance projects, and collaborations</strong> in Full Stack, Python, or WordPress development.</p>
+        <div class="about-chips">
+          <span class="chip">🐍 Python Developer</span>
+          <span class="chip">🌐 Full Stack</span>
+          <span class="chip">📦 WordPress</span>
+          <span class="chip">🤖 AI Enthusiast</span>
+          <span class="chip">🎬 YouTube Creator</span>
+          <span class="chip">🏆 Hackathon Winner</span>
         </div>
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <span class="timeline-date">2020</span>
-            <i class="fa-solid fa-school icon"></i>
-            <h3>Intermediate (MPC)</h3>
-            <h4>KNR Memorial Junior College</h4>
-            <p>Percentage: 74%</p>
-          </div>
+        <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+          <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" target="_blank" class="btn-primary" style="padding: 12px 24px; font-size: 0.82rem;">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="https://github.com/PinjariMurthujavali" target="_blank" class="btn-outline" style="padding: 12px 24px; font-size: 0.82rem;">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.youtube.com/@Syntaxsolver-u5m" target="_blank" class="btn-outline" style="padding: 12px 24px; font-size: 0.82rem; border-color: rgba(239,68,68,0.3); color: #f87171;">
+            <i class="fab fa-youtube"></i> YouTube
+          </a>
         </div>
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <span class="timeline-date">2018</span>
-            <i class="fa-solid fa-book icon"></i>
-            <h3>SSC (10th)</h3>
-            <h4>Sri Raja Rajeswari High School</h4>
-            <p>Percentage: 85%</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">// technical expertise</p>
+    <h2 class="section-title reveal">MY <span>SKILLS</span></h2>
+    <div class="skills-grid">
+      <!-- skill cards -->
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-html5"></i> HTML5</div>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.95"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-css3-alt"></i> CSS3</div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-js-square"></i> JavaScript</div>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.75"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-python"></i> Python</div>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-wordpress"></i> WordPress</div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fas fa-layer-group"></i> Django</div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fas fa-database"></i> SQL</div>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.75"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fas fa-code"></i> Java</div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-react"></i> React</div>
+          <span class="skill-pct">70%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.70"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-node-js"></i> Node.js</div>
+          <span class="skill-pct">70%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.70"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-git-alt"></i> Git & GitHub</div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fas fa-brain"></i> DSA</div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-docker"></i> Docker</div>
+          <span class="skill-pct">65%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.65"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fas fa-server"></i> REST APIs</div>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.75"></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-name"><i class="fab fa-linux"></i> Linux / CLI</div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">// work history</p>
+    <h2 class="section-title reveal">EXPERIENCE <span>&</span> ACHIEVEMENTS</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="tl-date" style="display:flex;align-items:center;gap:10px;">
+          2025 – Present
+          <span style="background:linear-gradient(135deg,var(--green),#34d399);color:#000;font-size:0.65rem;font-weight:700;padding:2px 10px;border-radius:100px;letter-spacing:1.5px;font-family:'Space Mono',monospace;">● CURRENT</span>
+        </div>
+        <div class="tl-card" style="border-color:rgba(16,185,129,0.4);box-shadow:0 0 30px rgba(16,185,129,0.08);">
+          <div class="tl-title" style="color:var(--green);">Python Full Stack Developer</div>
+          <div class="tl-org" style="color:#34d399;">Brilliant Technologies</div>
+          <div class="tl-desc">Currently working as a Python Full Stack Developer — building robust web applications, REST APIs, and full-stack solutions using Python, Django, and modern frontend technologies.</div>
+          <div class="tl-tags">
+            <span class="tl-tag" style="border-color:rgba(16,185,129,0.3);color:#34d399;background:rgba(16,185,129,0.07);">Python</span>
+            <span class="tl-tag" style="border-color:rgba(16,185,129,0.3);color:#34d399;background:rgba(16,185,129,0.07);">Django</span>
+            <span class="tl-tag" style="border-color:rgba(16,185,129,0.3);color:#34d399;background:rgba(16,185,129,0.07);">Full Stack</span>
+            <span class="tl-tag" style="border-color:rgba(16,185,129,0.3);color:#34d399;background:rgba(16,185,129,0.07);">REST APIs</span>
+            <span class="tl-tag" style="border-color:rgba(16,185,129,0.3);color:#34d399;background:rgba(16,185,129,0.07);">JavaScript</span>
           </div>
         </div>
       </div>
-    </section>
-  </main>
-  <script src="timeline.js"></script
- 
-  <br>
-        <!-- ================== SKILLS ================== -->  
-        <section class="skills section" id="skills">  
-            <h2 class="section-title">Skills</h2>  
-  
-            <div class="skills__container bd-grid">  
-                <div>  
-                    <h2 class="skills__subtitle">Professional Skills</h2>  
-                    <p class="skills__text">I possess a strong foundation in full-stack web development and software engineering, with hands-on experience in both frontend and backend technologies. My skill set includes:</p>  
-                    <div class="skills__data" data-percent="95">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-html5 skills__icon'></i>  
-                            <span class="skills__name">HTML5</span>  
-                        </div>  
-                        <div class="skills__bar skills__html"></div>  
-                        <div>  
-                            <span class="skills__percentage">95%</span>  
-                        </div>  
-                    </div>  
-                    <div class="skills__data" data-percent="85">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-css3 skills__icon'></i>  
-                            <span class="skills__name">CSS3</span>  
-                        </div>  
-                        <div class="skills__bar skills__css"></div>  
-                        <div>  
-                            <span class="skills__percentage">85%</span>  
-                        </div>  
-                    </div>  
-                    <div class="skills__data" data-percent="75">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-javascript skills__icon' ></i>  
-                            <span class="skills__name">JavaScript</span>  
-                        </div>  
-                        <div class="skills__bar skills__js"></div>  
-                        <div>  
-                            <span class="skills__percentage">75%</span>  
-                        </div>  
-                    </div>  
-                    <div class="skills__data" data-percent="85">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-wordpress skills__icon'></i>  
-                            <span class="skills__name">WordPress</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">85%</span>  
-                        </div>  
-                    </div>  
-                    <div class="skills__data" data-percent="90">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-python skills__icon'></i>  
-                            <span class="skills__name">Python</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">90%</span>  
-                        </div>  
-                    </div>  
-                    <div class="skills__data" data-percent="75">  
-                        <div class="skills__names">  
-                            <i class="fas fa-database skills__icon"></i>  
-                            <span class="skills__name">SQL</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">75%</span>  
-                        </div>  
-                    </div>  
-  
-                    <div class="skills__data" data-percent="80">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-django skills__icon'></i>  
-                            <span class="skills__name">Django</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">80%</span>  
-                        </div>  
-                    </div>  
-  
-                    <div class="skills__data" data-percent="65">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-jquery skills__icon'></i>  
-                            <span class="skills__name">jQuery</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">65%</span>  
-                        </div>  
-                    </div>  
-  
-                    <div class="skills__data" data-percent="70">  
-                        <div class="skills__names">  
-                            <i class='bx bxl-bootstrap skills__icon'></i>  
-                            <span class="skills__name">Bootstrap</span>  
-                        </div>  
-                        <div class="skills__bar skills__ux"></div>  
-                        <div>  
-                            <span class="skills__percentage">70%</span>  
-                        </div>  
-                    </div>  
+      <div class="timeline-item reveal">
+        <div class="tl-date">Feb 2025 – May 2025</div>
+        <div class="tl-card">
+          <div class="tl-title">WordPress Integrator</div>
+          <div class="tl-org">Vsplash Techlabs Private Limited</div>
+          <div class="tl-desc">Worked on WordPress-based website integration and customization. Implemented responsive designs, integrated plugins, and optimized website performance for SEO and speed.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">WordPress</span><span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">JavaScript</span><span class="tl-tag">SEO</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-date">2024</div>
+        <div class="tl-card">
+          <div class="tl-title">Python Full Stack Intern</div>
+          <div class="tl-org">Durga Software Solutions</div>
+          <div class="tl-desc">Completed intensive training and internship on Python Full Stack development. Gained hands-on experience in backend and frontend development.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">Python</span><span class="tl-tag">Django</span><span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-date">2024</div>
+        <div class="tl-card">
+          <div class="tl-title">Web Full Stack Intern</div>
+          <div class="tl-org">Eduskills Academy (Virtual)</div>
+          <div class="tl-desc">Worked on real-world web development projects using modern technologies and frameworks.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">HTML</span><span class="tl-tag">CSS</span><span class="tl-tag">JavaScript</span><span class="tl-tag">Django</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-date">2023 🏆</div>
+        <div class="tl-card">
+          <div class="tl-title tl-prize">🥈 Smart India Hackathon 2023 — 2nd Prize</div>
+          <div class="tl-org">Government of India Initiative</div>
+          <div class="tl-desc">Secured 2nd prize in the national-level hackathon for an innovative software solution. Competed against thousands of teams across India.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">Python</span><span class="tl-tag">JavaScript</span><span class="tl-tag">SQL</span><span class="tl-tag">Team Collaboration</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="tl-date">2022 – 2024</div>
+        <div class="tl-card">
+          <div class="tl-title">Intern Student Coordinator</div>
+          <div class="tl-org">Eduskills Academy</div>
+          <div class="tl-desc">Served as a coordinator for 3 years, helping students with technical guidance and internship onboarding.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">Leadership</span><span class="tl-tag">Mentoring</span><span class="tl-tag">Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <!-- Additional Software Developer Skills -->
-                    <div class="skills__data" data-percent="80">
-                        <div class="skills__names">
-                            <i class="fas fa-code skills__icon"></i>
-                            <span class="skills__name">Java</span>
-                        </div>
-                        <div class="skills__bar skills__java"></div>
-                        <div>
-                            <span class="skills__percentage">80%</span>
-                        </div>
-                    </div>
+<div class="divider"></div>
 
-                    <div class="skills__data" data-percent="85">
-                        <div class="skills__names">
-                            <i class="fab fa-git-alt skills__icon"></i>
-                            <span class="skills__name">Git & GitHub</span>
-                        </div>
-                        <div class="skills__bar skills__git"></div>
-                        <div>
-                            <span class="skills__percentage">85%</span>
-                        </div>
-                    </div>
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label reveal">// academic background</p>
+    <h2 class="section-title reveal">MY <span>EDUCATION</span></h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2024</div>
+        <div class="edu-degree">B.Tech — Electronics & Communication Engineering</div>
+        <div class="edu-inst">Santhiram Engineering College, Andhra Pradesh</div>
+        <div class="edu-grade">✅ CGPA: 8.0 / 10</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2020</div>
+        <div class="edu-degree">Intermediate (MPC)</div>
+        <div class="edu-inst">KNR Memorial Junior College</div>
+        <div class="edu-grade">✅ Percentage: 74%</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2018</div>
+        <div class="edu-degree">SSC (10th)</div>
+        <div class="edu-inst">Sri Raja Rajeswari High School</div>
+        <div class="edu-grade">✅ Percentage: 85%</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <div class="skills__data" data-percent="65">
-                        <div class="skills__names">
-                            <i class="fas fa-cube skills__icon"></i>
-                            <span class="skills__name">Docker</span>
-                        </div>
-                        <div class="skills__bar skills__docker"></div>
-                        <div>
-                            <span class="skills__percentage">65%</span>
-                        </div>
-                    </div>
+<div class="divider"></div>
 
-                    <div class="skills__data" data-percent="70">
-                        <div class="skills__names">
-                            <i class="fab fa-node-js skills__icon"></i>
-                            <span class="skills__name">Node.js</span>
-                        </div>
-                        <div class="skills__bar skills__node"></div>
-                        <div>
-                            <span class="skills__percentage">70%</span>
-                        </div>
-                    </div>
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label reveal">// what i've built</p>
+    <h2 class="section-title reveal">FEATURED <span>PROJECTS</span></h2>
+    <div class="projects-grid">
 
-                    <div class="skills__data" data-percent="70">
-                        <div class="skills__names">
-                            <i class="fab fa-react skills__icon"></i>
-                            <span class="skills__name">React</span>
-                        </div>
-                        <div class="skills__bar skills__react"></div>
-                        <div>
-                            <span class="skills__percentage">70%</span>
-                        </div>
-                    </div>
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-user-circle"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Portfolio Website</div>
+          <div class="proj-desc">Personal portfolio built with HTML, CSS & JS showcasing skills and achievements.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Portfolio_website/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Portfolio_website" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
-                    <div class="skills__data" data-percent="75">
-                        <div class="skills__names">
-                            <i class="fas fa-server skills__icon"></i>
-                            <span class="skills__name">REST APIs</span>
-                        </div>
-                        <div class="skills__bar skills__api"></div>
-                        <div>
-                            <span class="skills__percentage">75%</span>
-                        </div>
-                    </div>
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-check-square"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">To-Do List App</div>
+          <div class="proj-desc">A simple to-do app with local storage and smooth UI for managing daily tasks.</div>
+          <div class="proj-links">
+            <a href="https://task-2-to-do-list-m9z3ja38q-pinjarimurthujavalis-projects.vercel.app/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/TASK-2---TO-DO-LIST" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
-                    <div class="skills__data" data-percent="60">
-                        <div class="skills__names">
-                            <i class="fas fa-vial skills__icon"></i>
-                            <span class="skills__name">Testing (Unit/Integration)</span>
-                        </div>
-                        <div class="skills__bar skills__test"></div>
-                        <div>
-                            <span class="skills__percentage">60%</span>
-                        </div>
-                    </div>
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-question-circle"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Quiz Game</div>
+          <div class="proj-desc">A fun interactive quiz game using JavaScript, with instant score calculation.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project-1---Quiz-Game/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project-1---Quiz-Game" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
-                    <div class="skills__data" data-percent="85">
-                        <div class="skills__names">
-                            <i class="fas fa-brain skills__icon"></i>
-                            <span class="skills__name">Data Structures & Algorithms</span>
-                        </div>
-                        <div class="skills__bar skills__dsa"></div>
-                        <div>
-                            <span class="skills__percentage">85%</span>
-                        </div>
-                    </div>
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-female"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Tech Women Empowerment</div>
+          <div class="proj-desc">A web platform designed to empower girls through interactive learning and technology-driven education.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Tech-For-Girl---Empower-Learn/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Tech-For-Girl---Empower-Learn" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
-                    <div class="skills__data" data-percent="80">
-                        <div class="skills__names">
-                            <i class="fab fa-linux skills__icon"></i>
-                            <span class="skills__name">Linux / CLI</span>
-                        </div>
-                        <div class="skills__bar skills__linux"></div>
-                        <div>
-                            <span class="skills__percentage">80%</span>
-                        </div>
-                    </div>
-                </div>  
-  
-                <div>  
-                    <img src="assets/img/work3.jpg" alt="Skills Illustration" class="skills__img">  <!-- Added alt text -->  
-                </div>  
-            </div>  
-        </section>  
-  <br><br><br>
-        <!-- ================== PROJECTS ================== -->  
-       <section class="projects-section" id="projects">  
-            <h2 class="section-title">Projects</h2>  
-                <div class="projects-container">  
-  
-                    <!-- Project 1 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/portfolio.jpg" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Portfolio Website</h3>  
-                            <p>A personal portfolio built with HTML, CSS & JS showcasing skills and achievements.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Portfolio_website/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Portfolio_website" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 2 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/todolist.jpg" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>To-Do List App</h3>  
-                            <p>A simple to-do app with local storage and smooth UI for managing daily tasks.</p>  
-                            <div class="buttons">  
-                                <a href="https://task-2-to-do-list-m9z3ja38q-pinjarimurthujavalis-projects.vercel.app/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/TASK-2---TO-DO-LIST" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 3 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/quizgame.jpg" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Quiz Game</h3>  
-                            <p>A fun interactive quiz game using JavaScript, with instant score calculation.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-1---Quiz-Game/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-1---Quiz-Game" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 4 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Women.jpg" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Tech Women Empowerment</h3>  
-                            <p>A web platform designed to empower girls through interactive learning and technology-driven education</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Tech-For-Girl---Empower-Learn/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Tech-For-Girl---Empower-Learn" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 5 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/rock-paper-scissors-neon-icons-Picsart-AiImageEnhancer.jpg" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Rock-Paper-Scissors with AI</h3>  
-                            <p>A simple interactive Rock–Paper–Scissors game built with modern web frameworks to let you play against the computer online.</p>  
-                            <div class="buttons">  
-                                <a href="https://task-3-rock-paper-sciessors-omtor2hfk.vercel.app/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Task-3-Rock-paper-sciessors" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 6 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/calculator.jpeg" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Calculator</h3>  
-                            <p>A simple and responsive web-based calculator for quick arithmetic operations.</p>  
-                            <div class="buttons">  
-                                <a href="https://task-1-calculator-project-346jgsbnx.vercel.app/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Task-1-Calculator_project" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 7 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/hidden-search-widget..jpeg" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Hidden-Search-Widget</h3>  
-                            <p>A discreet search widget that stays hidden until needed for quick, clutter‑free access.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Hidden-Search-Widget/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Hidden-Search-Widget" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 8 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/qrcode1..jpeg" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>QR Code Generator</h3>  
-                            <p>A simple tool to instantly generate custom QR codes from any text or URL</p>  
-                            <div class="buttons">  
-                                <a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR/deployments" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 9 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/progress-Picsart-AiImageEnhancer.png" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Progress-bar-steps</h3>  
-                            <p>A step-by-step progress bar component to visually track task or form completion.</p>  
-                            <div class="buttons">  
-                                <a href="https://github.com/PinjariMurthujavali/Progress-bar-steps/deployments" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Progress-bar-steps/" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 10 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/weather-dashboard-Picsart-AiImageEnhancer.png" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Weather dashboard</h3>  
-                            <p>A dynamic weather dashboard providing real-time forecasts and location-based updates.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-23---Weather-Dashboard/deployments" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-23---Weather-Dashboard/" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 11 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/robot-joke-generator.jpeg" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Robot-Jokes-Generator</h3>  
-                            <p>A fun robot-themed jokes generator that delivers random techy humor at a click.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-22-Robot-Jokes-Generator-/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-22-Robot-Jokes-Generator-" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 12 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/expanding-cards-Picsart-AiImageEnhancer.jpeg" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Expanding cards</h3>  
-                            <p>A card-based layout that expands to reveal more information on click.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Expanding_Cards/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Expanding_Cards" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 13 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Random-password.png" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Generate-Random-Password</h3>  
-                            <p>A simple web app that generates random passwords based on user-defined criteria.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-10-Generate-Random-Password/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-10-Generate-Random-Password" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 14 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/day-of-the-week.png" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Day of the Week</h3>  
-                            <p>A simple to-do app with local storage and smooth UI for managing daily tasks.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-7-Day-of-the-Week/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-7-Day-of-the-Week" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 15 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/input-character-counter.png" alt="Project 3" class="project-img">  
-                         <div class="project-content">  
-                            <h3>Input Character Counter</h3>  
-                            <p>A simple web application that counts the number of characters in a text input.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-6-Input-Character-Counter/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-6-Input-Character-Counter" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 16 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Gradient-generator.png" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Gradient Generator</h3>  
-                            <p>A simple web application that allows users to create beautiful gradients.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-5-Gradient-Generator/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-5-Gradient-Generator" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 17 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Fd-calculator.png" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>FD-Calculator</h3>  
-                            <p>A simple and user-friendly financial calculator web application.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-4-FD-Calculator/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-4-FD-Calculator" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 18 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Notes-application.png" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Notes Application</h3>  
-                            <p>A simple and responsive web-based notes application for quick note-taking.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-3-Notes-Application/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-3-Notes-Application" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 19 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/simple-form.png" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Simple-Contact-Form</h3>  
-                            <p>A simple and elegant contact form for easy communication.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project---25---Simple-Contact-Form/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project---25---Simple-Contact-Form" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 20 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/poll-system.png" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Interactive Poll System</h3>  
-                            <p>A simple tool to create and manage polls with real-time results.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project---27---Interactive-Poll-System-Project-/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project---27---Interactive-Poll-System-Project-" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 21 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Quick-url.png" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Quick URL Application</h3>  
-                            <p>A web app that allows users to shorten and manage their URLs easily.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project---26---Quick-URLs-Application-/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project---26---Quick-URLs-Application-" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 22 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/speech-reader.png" alt="Project 1" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Speech-to-Text Reader</h3>  
-                            <p>A web app that converts spoken words into written text instantly.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-24-Speech-text-reader/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-24-Speech-text-reader" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 23 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/Box-shadow-generator.png" alt="Project 2" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Box-Shadow-Generator</h3>  
-                            <p> A tool to create and preview CSS box shadows instantly with copyable code.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-2-Box-Shadow-Generator/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-2-Box-Shadow-Generator" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="#" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-  
-                    <!-- Project 24 -->  
-                    <div class="project-card">  
-                        <img src="assets/img/invalid.png" alt="Project 3" class="project-img">  
-                        <div class="project-content">  
-                            <h3>Invalid-input-shake</h3>  
-                            <p> A web project that shakes the input field when users enter invalid data, giving instant visual feedback.</p>  
-                            <div class="buttons">  
-                                <a href="https://pinjarimurthujavali.github.io/Project-1-Invalid-Input-Shake/" class="btn live-demo" target="_blank">Live Demo</a>  
-                                <a href="https://github.com/PinjariMurthujavali/Project-1-Invalid-Input-Shake" class="btn github" target="_blank">GitHub</a>  
-                                <!-- LinkedIn Button -->  
-                                <a href="#" class="btn linkedin" target="_blank">  
-                                    <i class="fab fa-linkedin"></i> LinkedIn  
-                                </a>  
-                                <!-- YouTube Button -->  
-                                <a href="" class="btn youtube" target="_blank">  
-                                    <i class="fab fa-youtube"></i> YouTube  
-                                </a>  
-                            </div>  
-                        </div>  
-                    </div>  
-                </div>  
-       </section>  
-  
-        <!-- ================== WORK (GALLERY) ================== -->  
-        <section class="work section" id="work">  
-            <h2 class="section-title">Work</h2>  
-  
-            <div class="work__container bd-grid">  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work1.jpg" alt="Work Sample 1">  <!-- Added alt text -->  
-                </a>  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work2.jpg" alt="Work Sample 2">  <!-- Added alt text -->  
-                </a>  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work3.jpg" alt="Work Sample 3">  <!-- Added alt text -->  
-                </a>  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work4.jpg" alt="Work Sample 4">  <!-- Added alt text -->  
-                </a>  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work5.jpg" alt="Work Sample 5">  <!-- Added alt text -->  
-                </a>  
-                <a href="#" class="work__img">  
-                    <img src="assets/img/work6.jpg" alt="Work Sample 6">  <!-- Added alt text -->  
-                </a>  
-            </div>  
-        </section>  
-        <br><br>
-        <!-- ================== CERTIFICATIONS ================== -->  
-        <section class="certifications section" id="certifications">  <!-- Added ID for navigation -->  
-            <div class="container-certification">  
-                <h2 class="section-title">Certifications</h2>  
-                <div class="certification-gallery">  
-  
-                    <div class="cert-card">  
-                        <h4>Python Full Stack Developer</h4>  
-                        <p class="cert-card__meta">Durga Software Solutions, Hyderabad <span class="cert-card__date">• 2024</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Python Full Stack Developer certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>Web Development Certification</h4>  
-                        <p class="cert-card__meta">American Indian Foundation (S&P GLOBAL), Hyderabad <span class="cert-card__date">• 2023</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Web Development certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>Java Certification</h4>  
-                        <p class="cert-card__meta">SoloLearn <span class="cert-card__date">• 2022</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Java certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>SQL Fundamentals Certification</h4>  
-                        <p class="cert-card__meta">HackerRank <span class="cert-card__date">• 2022</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View SQL certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>Python Data Structures</h4>  
-                        <p class="cert-card__meta">SoloLearn <span class="cert-card__date">• 2021</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Python Data Structures certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>WordPress Developer Certification</h4>  
-                        <p class="cert-card__meta">Vsplash Techlabs Private Limited, Hyderabad <span class="cert-card__date">• 2025</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View WordPress certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>Beaver Builder Certification</h4>  
-                        <p class="cert-card__meta">Vsplash Techlabs Private Limited, Hyderabad <span class="cert-card__date">• 2025</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Beaver Builder certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>WooCommerce Developer Certification</h4>  
-                        <p class="cert-card__meta">Vsplash Techlabs Private Limited, Hyderabad <span class="cert-card__date">• 2025</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View WooCommerce certificate">View Certificate</a>
-                    </div>  
-  
-                    <div class="cert-card">  
-                        <h4>TCS iON Career Edge</h4>  
-                        <p class="cert-card__meta">Communication, Resume Writing & Soft Skills <span class="cert-card__date">• 2023</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View TCS iON certificate">View Certificate</a>
-                    </div>  
-                    
-                    <!-- New: Software Developer Certification -->
-                    <div class="cert-card">  
-                        <h4>Software Developer Certification</h4>
-                        <p class="cert-card__meta">Institue of Software Excellence <span class="cert-card__date">• 2025</span></p>
-                        <a class="cert-card__link" href="#" aria-label="View Software Developer certificate">View Certificate</a>
-                    </div>
-  
-                </div>  
-            </div>  
-        </section>  
-  <br><br>
-        <!-- ================== CONTACT ================== -->  
-        <section class="contact section" id="contact">  
-            <h2 class="section-title">Contact Me</h2>  <!-- More friendly title -->  
-  
-            <div class="contact__container bd-grid">  
-                <form action="#" class="contact__form" id="contact-form"> <!-- Added ID -->  
-                    <input type="text" placeholder="Name" class="contact__input" id="name" required> <!-- Added ID and required -->  
-                    <input type="email" placeholder="Email" class="contact__input" id="email" required> <!-- Added ID and required -->  
-                    <textarea name="message" id="message" cols="0" rows="10" class="contact__input" placeholder="Your Message" required></textarea> <!-- Added ID, name, placeholder and required -->  
-                    <button type="submit" class="contact__button button">Send Message</button>  <!-- Changed to button type submit -->  
-                </form>  
-                <p id="contact-form-status"></p>  <!-- Element to display form submission status -->  
-            </div>  
-        </section>  
-    </main>  
-  
-    <!-- ================== FOOTER ================== -->  
-    <footer class="footer">  
-        <p class="footer__title">Murthu</p>  
-        <div class="footer__social">  
-            <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" class="footer__icon" aria-label="LinkedIn"><i class='bx bxl-linkedin' ></i></a>  
-            <a href="https://github.com/PinjariMurthujavali" class="footer__icon" aria-label="GitHub"><i class='bx bxl-github' ></i></a> 
-            <a href="https://www.youtube.com/@Syntaxsolver-u5m" class="footer__icon" aria-label="Youtube Profile"><i class='bx bxl-youtube' ></i></a>
-            <!-- Add other social links here -->  
-        </div>  
-        <p class="footer__copy">&#169; Murthu_creations. All rights reserved</p>  
-    </footer>  
-  
-    <!-- ================== SCROLL REVEAL ================== -->  
-    <script src="https://unpkg.com/scrollreveal"></script>  
-  
-    <!-- ================== MAIN JS ================== -->  
-    <script src="assets/js/main.js"></script>  
-    <script>  
-        //Example JavaScript For Contact Form  
-        document.getElementById('contact-form').addEventListener('submit', function(event) {  
-            event.preventDefault(); // Prevent default form submission  
-  
-            // Basic form validation  
-            const name = document.getElementById('name').value.trim();  
-            const email = document.getElementById('email').value.trim();  
-            const message = document.getElementById('message').value.trim();  
-  
-            if (!name || !email || !message) {  
-                document.getElementById('contact-form-status').textContent = 'Please fill out all fields.';  
-                return;  
-            }  
-  
-            // Simulate a successful submission (replace with actual submission logic)  
-            setTimeout(() => {  
-                document.getElementById('contact-form-status').textContent = 'Message sent successfully!';  
-                document.getElementById('name').value = '';  
-                document.getElementById('email').value = '';  
-                document.getElementById('message').value = '';  
-            }, 1500); //Simulated delay  
-        });  
-    </script>  
-</body>  
-</html>  
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-hand-rock"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Rock-Paper-Scissors with AI</div>
+          <div class="proj-desc">A simple interactive Rock–Paper–Scissors game to play against the computer online.</div>
+          <div class="proj-links">
+            <a href="https://task-3-rock-paper-sciessors-omtor2hfk.vercel.app/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Task-3-Rock-paper-sciessors" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-calculator"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Calculator</div>
+          <div class="proj-desc">A simple and responsive web-based calculator for quick arithmetic operations.</div>
+          <div class="proj-links">
+            <a href="https://task-1-calculator-project-346jgsbnx.vercel.app/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Task-1-Calculator_project" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-cloud-sun"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Weather Dashboard</div>
+          <div class="proj-desc">A dynamic weather dashboard providing real-time forecasts and location-based updates.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project-23---Weather-Dashboard/deployments" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project-23---Weather-Dashboard/" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-qrcode"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">QR Code Generator</div>
+          <div class="proj-desc">A simple tool to instantly generate custom QR codes from any text or URL.</div>
+          <div class="proj-links">
+            <a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR/deployments" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/PROJECT-2-QR-CODE-GENERATOR" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-microphone"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Speech-to-Text Reader</div>
+          <div class="proj-desc">A web app that converts spoken words into written text instantly.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project-24-Speech-text-reader/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project-24-Speech-text-reader" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-lock"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Random Password Generator</div>
+          <div class="proj-desc">A web app that generates random passwords based on user-defined criteria.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project-10-Generate-Random-Password/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project-10-Generate-Random-Password" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-sticky-note"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Notes Application</div>
+          <div class="proj-desc">A simple and responsive web-based notes application for quick note-taking.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project-3-Notes-Application/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project-3-Notes-Application" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+      <div class="proj-card reveal">
+        <div class="proj-img-area"><i class="fas fa-poll"></i></div>
+        <div class="proj-body">
+          <div class="proj-title">Interactive Poll System</div>
+          <div class="proj-desc">A simple tool to create and manage polls with real-time results.</div>
+          <div class="proj-links">
+            <a href="https://pinjarimurthujavali.github.io/Project---27---Interactive-Poll-System-Project-/" target="_blank" class="proj-link demo"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+            <a href="https://github.com/PinjariMurthujavali/Project---27---Interactive-Poll-System-Project-" target="_blank" class="proj-link gh"><i class="fab fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</section>
 
+<div class="divider"></div>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certifications">
+  <div class="section-inner">
+    <p class="section-label reveal">// achievements</p>
+    <h2 class="section-title reveal">MY <span>CERTIFICATIONS</span></h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fab fa-python"></i></div>
+        <div class="cert-info">
+          <h4>Python Full Stack Developer</h4>
+          <p>Durga Software Solutions, Hyderabad</p>
+          <span>2024</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-globe"></i></div>
+        <div class="cert-info">
+          <h4>Web Development Certification</h4>
+          <p>American Indian Foundation (S&amp;P GLOBAL)</p>
+          <span>2023</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fab fa-java"></i></div>
+        <div class="cert-info">
+          <h4>Java Certification</h4>
+          <p>SoloLearn</p>
+          <span>2022</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-database"></i></div>
+        <div class="cert-info">
+          <h4>SQL Fundamentals Certification</h4>
+          <p>HackerRank</p>
+          <span>2022</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fab fa-wordpress"></i></div>
+        <div class="cert-info">
+          <h4>WordPress Developer Certification</h4>
+          <p>Vsplash Techlabs Private Limited</p>
+          <span>2025</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-shopping-cart"></i></div>
+        <div class="cert-info">
+          <h4>WooCommerce Developer Certification</h4>
+          <p>Vsplash Techlabs Private Limited</p>
+          <span>2025</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-code"></i></div>
+        <div class="cert-info">
+          <h4>Software Developer Certification</h4>
+          <p>Institute of Software Excellence</p>
+          <span>2025</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
+        <div class="cert-info">
+          <h4>TCS iON Career Edge</h4>
+          <p>Communication, Resume Writing & Soft Skills</p>
+          <span>2023</span>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon"><i class="fas fa-leaf"></i></div>
+        <div class="cert-info">
+          <h4>Python Data Structures</h4>
+          <p>SoloLearn</p>
+          <span>2021</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">// let's work together</p>
+    <h2 class="section-title reveal">GET IN <span>TOUCH</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Ready to build something amazing?</h3>
+        <p>I'm open to full-time roles, freelance projects, and exciting collaborations. Let's connect and create something impactful together!</p>
+
+        <div class="contact-methods">
+          <a href="https://wa.me/919100850087?text=Hi%20Murthu!%20I%20saw%20your%20portfolio%20and%20I'd%20like%20to%20connect." 
+             class="contact-method whatsapp" target="_blank">
+            <div class="cm-icon green"><i class="fab fa-whatsapp"></i></div>
+            <div class="cm-text">
+              <strong>WhatsApp (Fastest)</strong>
+              <span>+91 9100850087 · Click to chat now</span>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" class="contact-method" target="_blank">
+            <div class="cm-icon blue"><i class="fab fa-linkedin"></i></div>
+            <div class="cm-text">
+              <strong>LinkedIn</strong>
+              <span>murthujavali-pinjari18</span>
+            </div>
+          </a>
+          <a href="https://github.com/PinjariMurthujavali" class="contact-method" target="_blank">
+            <div class="cm-icon purple"><i class="fab fa-github"></i></div>
+            <div class="cm-text">
+              <strong>GitHub</strong>
+              <span>PinjariMurthujavali</span>
+            </div>
+          </a>
+          <a href="https://www.youtube.com/@Syntaxsolver-u5m" class="contact-method" target="_blank">
+            <div class="cm-icon red"><i class="fab fa-youtube"></i></div>
+            <div class="cm-text">
+              <strong>YouTube — Syntax Solver</strong>
+              <span>Coding tutorials & DSA</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-area reveal">
+        <div class="form-group">
+          <input type="text" id="f-name" class="form-input" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="f-email" class="form-input" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea id="f-msg" class="form-textarea" placeholder="Your Message..." required></textarea>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button onclick="sendMsg()" class="btn-primary" style="border: none; cursor: none; flex: 1;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <a href="https://wa.me/919100850087" target="_blank" class="btn-whatsapp" style="flex: 1; justify-content: center;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+        <p id="form-status" style="margin-top: 14px; font-size: 0.82rem; color: var(--green);"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">MURTHU-FOLIO</div>
+  <p class="footer-copy">© 2025 Murthujavali Pinjari · All rights reserved</p>
+  <div class="footer-social">
+    <a href="https://www.linkedin.com/in/murthujavali-pinjari18/" target="_blank" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/PinjariMurthujavali" target="_blank" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.youtube.com/@Syntaxsolver-u5m" target="_blank" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://wa.me/919100850087" target="_blank" class="social-btn" style="color: #25d366; border-color: rgba(37,211,102,0.3);" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) *.12;
+    ring.style.transform = `translate(${rx - 20}px, ${ry - 20}px)`;
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.style.transform += ' scale(2)');
+    el.addEventListener('mouseleave', () => { });
+  });
+
+  // SCROLL REVEAL
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // SKILL BARS
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fill = e.target.querySelector('.skill-fill');
+        if (fill) {
+          const w = fill.style.getPropertyValue('--w') || fill.getAttribute('style').match(/--w:([\d.]+)/)?.[1];
+          fill.style.width = (parseFloat(w || 0.8) * 100) + '%';
+          fill.classList.add('animate');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-card').forEach(el => skillObs.observe(el));
+
+  // NAV ACTIVE
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent2)' : '';
+    });
+  });
+
+  // CONTACT FORM
+  function sendMsg() {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const msg = document.getElementById('f-msg').value.trim();
+    const status = document.getElementById('form-status');
+    if (!name || !email || !msg) {
+      status.style.color = '#f87171';
+      status.textContent = '⚠️ Please fill all fields.';
+      return;
+    }
+    status.style.color = 'var(--green)';
+    status.textContent = '✅ Message sent successfully! I\'ll get back to you soon.';
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-msg').value = '';
+    setTimeout(() => status.textContent = '', 4000);
+  }
+</script>
+</body>
+</html>
