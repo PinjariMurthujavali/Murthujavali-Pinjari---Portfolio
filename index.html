@@ -1106,18 +1106,33 @@ footer {
              3. Copy the Access Key you receive
              4. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with that key
              That's it! Emails will go directly to luckymurthu@gmail.com ✅ -->
-        <div class="form-wrap">
-          <div class="form-row">
-            <input type="text" id="f-name" class="f-input" placeholder="Your Name *">
-            <input type="email" id="f-email" class="f-input" placeholder="Your Email *">
-          </div>
-          <input type="text" id="f-company" class="f-input" placeholder="Company / Organization (optional)">
-          <textarea id="f-msg" class="f-textarea" placeholder="Your Message... *"></textarea>
-          <div style="display:flex;gap:12px">
-            <button id="send-btn" onclick="sendMsg()" class="btn-gold" style="border:none;flex:1;justify-content:center;cursor:none">
-              <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-            <button onclick="sendWhatsApp()" class="btn-ghost" style="border:none;flex:1;justify-content:center;cursor:none;background:transparent">
+        
+        <form action="https://api.web3forms.com/submit" method="POST">
+
+  <input type="hidden" name="access_key" value="438c0f65-2c35-47a5-af69-c82f483de4f2">
+
+  <div class="form-wrap">
+    
+    <div class="form-row">
+      <input type="text" name="name" id="f-name" class="f-input" placeholder="Your Name *" required>
+      
+      <input type="email" name="email" id="f-email" class="f-input" placeholder="Your Email *" required>
+    </div>
+
+    <input type="text" name="company" id="f-company" class="f-input" placeholder="Company / Organization (optional)">
+    
+    <textarea name="message" id="f-msg" class="f-textarea" placeholder="Your Message... *" required></textarea>
+
+    <div style="display:flex;gap:12px">
+      <button type="submit" class="btn-gold" style="border:none;flex:1;justify-content:center;">
+        <i class="fas fa-paper-plane"></i> Send Message
+      </button>
+    </div>
+
+  </div>
+
+</form>
+        <button onclick="sendWhatsApp()" class="btn-ghost" style="border:none;flex:1;justify-content:center;cursor:none;background:transparent">
               <i class="fab fa-whatsapp"></i> WhatsApp
             </button>
           </div>
